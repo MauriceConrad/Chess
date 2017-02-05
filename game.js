@@ -1,7 +1,6 @@
 "use strict";
 
 var chess = require("chess");
-var fs = require("fs");
 
 var game = new chess.Game();
 
