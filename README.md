@@ -128,11 +128,11 @@ rules: {
 }
 ```
 
-###### How they're interpreted?
+##### How they're interpreted?
 Within the module, there is a function that checks a lot of things. For example, whether the direction is allowed, the maximum amount of steps is okay, the ratio is possible for this _type_ of piece and whether the way is clear. (If _jump_ is **true**, the way doesn't matters).
 The next thing is the property _special_ that contains an array with method names. This methods are individual methods to manage more complicated rules because it's not possible to explain such a complex rule like _castling_ just in JSON.
 
-###### Properties
+##### Properties
 ```javascript
 {
   directions: [Array], // All allowed directions for the movement. | "forward" || "backward" || "left" || "right"
