@@ -1,16 +1,17 @@
 "use strict";
 
-var chess = require("chess");
+var chess = require("chessboard");
 
 var game = new chess.Game();
 
 var res = game.move({
-  from: "d2",
-  to: "c7",
-  rules: false
+  from: "a2",
+  to: "a7",
+  rules: false,
+  test: false
 });
 
 console.log(game.print());
 console.log(res);
 
-//console.log(game.exportSVG());
+console.log(game.getAttacks("a6"));
