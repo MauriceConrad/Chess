@@ -229,7 +229,7 @@ var myMove = game.move({
 {
   success: false, // Move was not successfully
   hit: false, // Of course, if you can't move you didn't hit any other piece...
-  error: [Array] // Array containing errors which describes why the move doesn't matches the rules.
+  error: [Array] // Array containing errors which describes why the move doesn't matches the rules
 }
 ```
 
