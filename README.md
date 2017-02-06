@@ -225,6 +225,12 @@ var myMove = game.move({
     attacks: [Array] // Array containing pieces who might be able to attack the new position
   }
 }
+// If the move was not successfully
+{
+  success: false, // Move was not successfully
+  hit: false, // Of course, if you can't move you didn't hit any other piece...
+  error: [Array] // Array containing errors which describes why the move doesn't matches the rules.
+}
 ```
 
 #### getTargets()
