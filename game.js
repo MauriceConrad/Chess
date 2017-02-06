@@ -1,12 +1,12 @@
 "use strict";
 
-var chess = require("chessboard");
+var chess = require("chess-engine");
 
 var game = new chess.Game();
 
 var res = game.move({
   from: "a2",
-  to: "a7",
+  to: "a4",
   rules: true,
   test: false
 });
