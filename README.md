@@ -12,20 +12,20 @@ var chess = require("chessboard");
 ```javascript
 {
   board: [Object],    // Located in  "/default/board.json"
-  figures: [Array],  // Located in  "/default/figures.json"
+  pieces: [Array],  // Located in  "/default/pieces.json"
   rules: [Object],    // Located in  "/default/rules.json"
   Game: [Function]
 }
 ```
 
 This returns the general chess instance containing the Game() prototype and objects containing board, pieces and rules.
-This three objects are loaded from external files and may be used by the Game() prototype to get a board, pieces or rules.
+These three objects are loaded from external files and may be used by the Game() prototype to get a board, pieces or rules.
 
 Before we see how the module works in general, let#s have a look at the structure of these three objects.
 
 #### Board
 
-It has keys from a-h that are containing an array with 8 items. Each item represents 'false' or the **id** of a pieces (Pieces are declared in the *figures* object).
+It has keys from a-h that are containing an array with 8 items. Each item represents 'false' or the **id** of a pieces (Pieces are declared in the *pieces* object).
 If it's '_false_', the field is empty.
 
 ```javascript
@@ -47,7 +47,7 @@ It's an array containing objects who describe the piece.
 The index of an item represents it's **id**.
 
 ```javascript
-figures: [
+pieces: [
   { type: "farmer", color: "black" }, // ID: 0
   { type: "farmer", color: "black" }, // ID: 1
   { type: "farmer", color: "black" }, // ID: 2
@@ -86,8 +86,8 @@ figures: [
 
 #### Rules
 
-It's an object containing objects that describe the rules for a _type_ of _figures_.
-The rule definition for a _type_ of _figures_ has a few properties:
+It's an object containing objects that describe the rules for a _type_ of _pieces_.
+The rule definition for a _type_ of _pieces_ has a few properties:
 
 ```javascript
 rules: {
@@ -170,7 +170,7 @@ There are also some methods to interact with the board or to print/export the ch
 ```javascript
 game: {
   board: [Object], // The current board of the game
-  figures: [Array], // The list of pieces of the game. | The amount of moves is saved within the piece object
+  pieces: [Array], // The list of pieces of the game. | The amount of moves is saved within the piece object
   rules: [Object], // The used rules for validating moves
   specialRules: [Object], // The special functions that are used for managing complicated rules
   print: [Function], // Returns a simple text based output of the current board. (First argument can be "console" or "text". Default is "console". If it's "text" the output doesn't contains styling rules for the console)

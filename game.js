@@ -1,6 +1,6 @@
 "use strict";
 
-var chess = require("chess-engine");
+var chess = require("chessboard-engine");
 
 var game = new chess.Game();
 
@@ -14,4 +14,5 @@ var res = game.move({
 console.log(game.print());
 console.log(res);
 
-console.log(game.getAttacks("a7"));
+console.log(game.getTargets("a7"));
+console.log(game);
