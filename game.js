@@ -6,13 +6,12 @@ var game = new chess.Game();
 
 var res = game.move({
   from: "a2",
-  to: "a4",
-  rules: true,
+  to: "a6",
+  rules: false,
   test: false
 });
 
 console.log(game.print());
-console.log(res);
 
-console.log(game.getTargets("a7"));
-console.log(game);
+console.log("attacks", game.getAttacks("f6"));
+console.log("targets", game.getTargets("a6"));

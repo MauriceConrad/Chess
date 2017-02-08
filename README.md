@@ -48,36 +48,36 @@ The index of an item represents it's **id**.
 
 ```javascript
 pieces: [
-  { type: "farmer", color: "black" }, // ID: 0
-  { type: "farmer", color: "black" }, // ID: 1
-  { type: "farmer", color: "black" }, // ID: 2
-  { type: "farmer", color: "black" }, // ID: 3
-  { type: "farmer", color: "black" }, // ID: ...
-  { type: "farmer", color: "black" }, // ...
-  { type: "farmer", color: "black" },
-  { type: "farmer", color: "black" },
-  { type: "tower", color: "black" },
-  { type: "tower", color: "black" },
-  { type: "jumper", color: "black" },
-  { type: "jumper", color: "black" },
-  { type: "runner", color: "black" },
-  { type: "runner", color: "black" },
+  { type: "pawn", color: "black" }, // ID: 0
+  { type: "pawn", color: "black" }, // ID: 1
+  { type: "pawn", color: "black" }, // ID: 2
+  { type: "pawn", color: "black" }, // ID: 3
+  { type: "pawn", color: "black" }, // ID: ...
+  { type: "pawn", color: "black" }, // ...
+  { type: "pawn", color: "black" },
+  { type: "pawn", color: "black" },
+  { type: "rook", color: "black" },
+  { type: "rook", color: "black" },
+  { type: "knight", color: "black" },
+  { type: "knight", color: "black" },
+  { type: "bishop", color: "black" },
+  { type: "bishop", color: "black" },
   { type: "king", color: "black" },
   { type: "queen", color: "black" },
-  { type: "farmer", color: "white" },
-  { type: "farmer", color: "white" },
-  { type: "farmer", color: "white" },
-  { type: "farmer", color: "white" },
-  { type: "farmer", color: "white" },
-  { type: "farmer", color: "white" },
-  { type: "farmer", color: "white" },
-  { type: "farmer", color: "white" },
-  { type: "tower", color: "white" },
-  { type: "tower", color: "white" },
-  { type: "jumper", color: "white" },
-  { type: "jumper", color: "white" },
-  { type: "runner", color: "white" },
-  { type: "runner", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "pawn", color: "white" },
+  { type: "rook", color: "white" },
+  { type: "rook", color: "white" },
+  { type: "knight", color: "white" },
+  { type: "knight", color: "white" },
+  { type: "bishop", color: "white" },
+  { type: "bishop", color: "white" },
   { type: "king", color: "white" },
   { type: "queen", color: "white" },
   { type: "queen", color: "black" }
@@ -91,25 +91,25 @@ The rule definition for a _type_ of _pieces_ has a few properties:
 
 ```javascript
 rules: {
-  farmer: {
+  pawn: {
     directions: ["forward"],
     ratio: [0],
     max: 1,
     special: ["checkUnused", "farmerHits"]
   },
-  tower: {
+  rook: {
     directions: ["forward", "backward", "left", "right"],
     ratio: [0],
     max: false,
     special: ["checkCastling"]
   },
-  jumper: {
+  knight: {
     directions: ["forward", "backward", "left", "right"],
     ratio: [0.5, 2],
     max: 2,
     jump: true
   },
-  runner: {
+  bishop: {
     directions: ["forward", "backward", "left", "right"],
     ratio: [1],
     max: false
@@ -136,8 +136,8 @@ The next thing is the property _special_ that contains an array with method name
 ```javascript
 {
   directions: [Array], // All allowed directions for the movement. | "forward" || "backward" || "left" || "right"
-  ratio: [Array], // All allowed ratios (X / Y proportion) | 0 = straight into one direction (Tower) | 1 = bidirectional (Runner)  | 0.5/2 = Jumper
-  max: [Number], // Maximum amount of steps to go | Farmer = 1 | King = 1 | Jumper = 2
+  ratio: [Array], // All allowed ratios (X / Y proportion) | 0 = straight into one direction (rook) | 1 = bidirectional (bishop)  | 0.5/2 = knight
+  max: [Number], // Maximum amount of steps to go | pawn = 1 | King = 1 | knight = 2
   jump: [Boolean], // If jumping is allowed | Means that it's not necessary if the way to the target field is clear
   special: [Array] // Containing special functions to control a complex kind of rule. You'll find more information about the way how this functions work below
 }
