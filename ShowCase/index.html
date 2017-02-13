@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,user-scalable=0">
+    <title>Show Case Chess</title>
+    <script type="text/javascript" src="jsoneditor/jsoneditor.min.js"></script>
+    <link rel="stylesheet" href="jsoneditor/jsoneditor.min.css">
+    <script type="text/javascript" src="../node_modules/chessboard-engine/main-browser.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <style media="screen">
+      body {
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+      }
+      .board-main {
+        width: calc(100%);
+        height: 100%;
+        text-align: center;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      .rules-edit {
+        font-size: 12px;
+        width: 100%;
+        background-color: #fff;
+        height: 300px;
+        text-align: center;
+      }
+      .rules-edit, .board-main {
+        display: inline-block;
+        vertical-align: top;
+      }
+      .chessboard {
+        display: inline-block;
+        width: 400px;
+        height: 400px;
+        font-size: 0;
+        vertical-align: middle;
+      }
+      .chessboard div {
+        display: inline-block;
+        vertical-align: top;
+      }
+      .chessboard .rows {
+        height: calc(100% - 50px);
+        width: calc(100% - 50px);
+        font-size: 0;
+      }
+      .chessboard .row-letters {
+        height: 50px;
+        width: calc(100% - 50px);
+        margin: -15px 0px 0px 50px;
+      }
+      .chessboard .line-letters {
+        width: 50px;
+        height: calc(100% - 50px);
+        margin: 20px 0px 0px 0px;
+      }
+      .chessboard .letter {
+        font-size: 28px;
+        text-align: center;
+        font-family: "Helvetica Neue", sans-serif;
+      }
+      .chessboard .row-letters .letter {
+        width: calc(100% / 8);
+        height: 100%;
+      }
+      .chessboard .line-letters .letter {
+        width: 100%;
+        height: calc(100% / 8);
+      }
+      @media (max-width: 5000px) {
+        .chessboard .letter {
+          font-size: 0;
+        }
+        .chessboard .row-letters, .chessboard .line-letters {
+          width: 0;
+          height: 0;
+        }
+        .chessboard .rows {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .chessboard .row {
+        margin: 0;
+        width: calc(100% / 8);
+        height: 100%;
+        padding: 0;
+        font-size: 0;
+        display: inline-block;
+      }
+      .chessboard .row li {
+        height: calc(100% / 8);
+        width: 100%;
+        display: inline-block;
+        margin: 0;
+        font-size: 12px;
+        box-sizing: border-box;
+        z-index: 1;
+        outline-offset: -2px;
+      }
+      .chessboard .row:nth-child(even) li:nth-child(even), .chessboard .row:nth-child(odd) li:nth-child(odd) {
+        background-color: #634132;
+      }
+      .chessboard .row li img {
+        width: 80%;
+        height: 80%;
+        margin: 10%;
+        transition: transform 0.5s;
+      }
+      .chessboard .row li.active {
+
+      }
+      .chessboard .row li.active img {
+        filter: drop-shadow(0px 0px 6px #000);
+      }
+      .chessboard .row:nth-child(even) li.active:nth-child(even) img, .chessboard .row:nth-child(odd) li.active:nth-child(odd) img {
+        filter: drop-shadow(0px 0px 6px #fff);
+      }
+      .chessboard .row li.target {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" style="fill: none; stroke: #4bcb44; stroke-width: 2px;"/></svg>');
+        cursor: pointer;
+      }
+      .chessboard .row li.attacker {
+        outline: 3px solid #f00;
+      }
+      .chessboard .row li.target + li.target {
+        border-top-width: 1px;
+      }
+      .rules-edit .title {
+        vertical-align: middle;
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 1.5em;
+      }
+      .btn {
+        padding: 5px 10px 5px 10px;
+        border: none;
+        color: #fff;
+        background-color: #07b88d;
+        cursor: pointer;
+        margin: 5px 0px;
+        border-radius: 0px;
+        vertical-align: middle;
+      }
+      .btn:hover {
+        background-color: #0da17d;
+      }
+      .btn svg {
+        height: 20px;
+        width: 20px;
+        vertical-align: middle;
+        transform: rotate(0deg);
+        transition: transform 0.6s;
+      }
+      .btn svg path {
+        fill: #fff;
+      }
+      .btn:hover svg {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board-main">
+      <div class="chessboard">
+        <div class="line-letters">
+          <div class="letter">8</div>
+          <div class="letter">7</div>
+          <div class="letter">6</div>
+          <div class="letter">5</div>
+          <div class="letter">4</div>
+          <div class="letter">3</div>
+          <div class="letter">2</div>
+          <div class="letter">1</div>
+        </div>
+        <div class="rows">
+          <ul class="row" data-row="a">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="row" data-row="b">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="row" data-row="c">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="row" data-row="d">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="row" data-row="e">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="row" data-row="f">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="row" data-row="g">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <ul class="row" data-row="h">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="row-letters">
+          <div class="letter">A</div>
+          <div class="letter">B</div>
+          <div class="letter">C</div>
+          <div class="letter">D</div>
+          <div class="letter">E</div>
+          <div class="letter">F</div>
+          <div class="letter">G</div>
+          <div class="letter">H</div>
+        </div>
+      </div>
+    </div>
+    <div class="rules-edit">
+      <button class="btn btn-update-rules">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%">
+          <path d="M 16 4 C 9.383 4 4 9.383 4 16 L 6 16 C 6 10.486 10.486 6 16 6 C 19.694954 6 22.926328 8.0113529 24.65625 11 L 21 11 L 21 13 L 27 13 L 28 13 L 28 12 L 28 6 L 26 6 L 26 9.40625 C 23.855169 6.1540559 20.180193 4 16 4 z M 26 16 C 26 21.514 21.514 26 16 26 C 12.305046 26 9.0736716 23.988647 7.34375 21 L 11 21 L 11 19 L 5 19 L 4 19 L 4 20 L 4 26 L 6 26 L 6 22.59375 C 8.1448306 25.845944 11.819807 28 16 28 C 22.617 28 28 22.617 28 16 L 26 16 z"></path>
+        </svg>
+        <span>Update</span>
+      </button>
+    </div>
+  </body>
+</html>
