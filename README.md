@@ -2,10 +2,16 @@
 
 Node.js module to control the logic of a chess board.
 
+## Install
+
+```bash
+npm install chessboard-engine
+```
+
 ## Require
 
 ```javascript
-var chess = require("chessboard");
+var chess = require("chessboard-engine");
 ```
 
 ### Chess Instance
@@ -152,14 +158,6 @@ var game = new chess.Game();
 ```
 
 A Game() contains it's own board, pieces and rules. If you don't pass custom ones, the Game() Function clones board, pieces and rules from the general chess instance.
-
-
-### Custom Board, Pieces or Rules
-
-There are three ways to set custom board, pieces or rules:
-1. Change the board, pieces or rules within the general chess instance before you create a new Game()
-2. The instance of a Game() contains it's own board, pieces and rules (Mostly cloned from the general chess instance). You can change these things every time. There is no reinitialization required.
-3. Pass them as arguments to the Game() prototype function
 
 
 ### Game Instance
